@@ -10,34 +10,85 @@ require_once "CalculatorDiv.php";
 final class localTest extends TestCase
 {
 
+    /**
+     * @dataProvider sumData
+     */
 
-
-    function testSum()
+    function testSum($a, $b, $d)
     {
-        $a = 2;
-        $b = 3;
+
         $j = (new CalculatorSumService)->getSum($a, $b);
-        $this->assertSame($j, 5);
+        $this->assertSame($j, $d);
     }
-    function testSub()
+    /**
+     * @dataProvider subData
+     */
+
+    function testSub($a, $b, $d)
     {
-        $a = 2;
-        $b = 3;
+
         $j = (new CalculatorSubService)->getSub($a, $b);
-        $this->assertSame($j, -1);
+        $this->assertSame($j, $d);
     }
-    function testMul()
+    /**
+     * @dataProvider mulData
+     */
+
+    function testMul($a, $b, $d)
     {
-        $a = 2;
-        $b = 3;
+
         $j = (new CalculatorMulService)->getMul($a, $b);
-        $this->assertSame($j, 6);
+        $this->assertSame($j, $d);
     }
-    function testDiv()
+    /**
+     * @dataProvider divData
+     */
+
+    function testDiv($a, $b, $d)
     {
-        $a = 6;
-        $b = 3;
+
         $j = (new CalculatorDivService)->getDiv($a, $b);
-        $this->assertSame($j, 2);
+        $this->assertSame($j, $d);
+    }
+
+    function sumData()
+    {
+        return [
+            [0, 0, 0],
+            [1, 1, 4],
+            [-1, 5, 4],
+            [2, 2, 4],
+            [1, 2, 4]
+        ];
+    }
+    function subData()
+    {
+        return [
+            [0, 0, 0],
+            [1, 1, 4],
+            [-1, -5, 4],
+            [2, 2, 0],
+            [-2, 2, -4]
+        ];
+    }
+    function mulData()
+    {
+        return [
+            [0, 0, 0],
+            [1, 1, 1],
+            [-1, 5, -5],
+            [2, 2, 4],
+            [1, 2, 4]
+        ];
+    }
+    function divData()
+    {
+        return [
+            [0, 0, 0],
+            [1, 1, 1],
+            [-1, 5, 4],
+            [2, 2, 1],
+            [1, 2, 0]
+        ];
     }
 }

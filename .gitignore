@@ -1,0 +1,4 @@
+/vendor/
+/config/local.ini 
+/config/credentials.json 
+/token.json 

@@ -51,21 +51,29 @@ final class localTest extends TestCase
         $this->assertSame($j, $d);
     }
 
+    /**
+     * @dataProvider divData0
+     */
+    function testDiv0($a, $b, $d)
+    {
+
+        $this->expectException(RuntimeException::class);
+        $j = (new CalculatorDivService)->getDiv($a, $b);
+        $this->assertSame($j, $d);
+    }
+
     function sumData()
     {
         return [
             [0, 0, 0],
-            [1, 1, 4],
             [-1, 5, 4],
             [2, 2, 4],
-            [1, 2, 4]
         ];
     }
     function subData()
     {
         return [
             [0, 0, 0],
-            [1, 1, 4],
             [-1, -5, 4],
             [2, 2, 0],
             [-2, 2, -4]
@@ -78,17 +86,22 @@ final class localTest extends TestCase
             [1, 1, 1],
             [-1, 5, -5],
             [2, 2, 4],
-            [1, 2, 4]
         ];
     }
     function divData()
     {
         return [
-            [0, 0, 0],
+
             [1, 1, 1],
-            [-1, 5, 4],
             [2, 2, 1],
-            [1, 2, 0]
+            [6, 2, 3]
+        ];
+    }
+    function divData0()
+    {
+        return [
+            [0, 0, 0],
+
         ];
     }
 }
